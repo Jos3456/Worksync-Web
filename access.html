@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="autocomplete" content="off">
+    <title>Sign In - WorkSync</title>
+    <link rel="icon" href="assets/favicon.ico" sizes="any">
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #C9DABF;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            color: #ffffff;
+        }
+
+        p{
+            color: rgb(0, 0, 0);
+        }
+
+        .login-container {
+            width: 100%;
+            max-width: 400px;
+            padding: 20px;
+        }
+        
+        .login-card {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            box-shadow: 
+                0 8px 32px rgba(0, 0, 0, 0.2),
+                0 4px 12px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            text-align: center;
+            color: black;
+        }
+        
+        .login-header {
+            margin-bottom: 30px;
+        }
+        
+        .logo-icon {
+            font-size: 50px;
+            color: #4CAF50;
+            margin-bottom: 15px;
+        }
+        
+        h1{
+            margin: 0;
+            font-size: 24px;
+            color: #000000;
+        }
+        
+        
+        .login-header p {
+            margin: 10px 0 0;
+            color: #000000;
+        }
+        
+        .input-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #000000;
+        }
+        
+        input {
+            width: 100%;
+            padding: 12px 15px;
+            background: rgba(255, 255, 255, 0.95);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 6px;
+            font-size: 16px;
+            box-sizing: border-box;
+            transition: all 0.3s;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        input:focus {
+            background: #ffffff;
+            border-color: #4CAF50;
+            outline: none;
+            box-shadow: 0 2px 12px rgba(76, 175, 80, 0.3);
+        }
+        
+        .login-btn {
+            width: 100%;
+            padding: 14px;
+            background-color: #808D7C;
+            color: rgb(255, 255, 255);
+            border: 2px solid #C9DABF;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            backdrop-filter: blur(4px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .login-btn:hover {
+            background-color: #C9DABF;
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+            color: #000000;
+            border: 2px solid #808D7C;
+        }
+
+        
+        .links a {
+            color: #808D7C;
+            text-decoration: none;
+            font-size: 14px;            
+            padding: 14px;
+            background-color: #808D7C;
+            color: rgb(255, 239, 239);
+            border: 2px solid #C9DABF;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            backdrop-filter: blur(4px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+        
+        .links a:hover {
+            background-color: #C9DABF;
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+            color: #000000;
+            border: 2px solid #808D7C;
+        }
+        
+        .error-message {
+            color: #808D7C;
+            margin-top: 5px;
+            font-size: 14px;
+            display: none;
+        }
+
+    </style>
+</head>
+<body>
+    
+    <div class="login-container">
+<div class="worksync-header" onclick="window.location.href='landing.html'">
+    <span class="worksync-text">WorkSync</span>
+    <span class="material-icons" style="color: rgb(0, 0, 0);">person</span>
+  </div>
+  
+  <style>
+    .worksync-header {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background-color: transparent;
+      padding: 8px 12px;
+      cursor: pointer;
+      border-radius: 4px;
+      transition: background-color 0.2s;
+      margin-left: 143px;
+      margin-bottom: 30px;
+    }
+    .worksync-header:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+    .worksync-text {
+      color: rgb(0, 0, 0);
+      font-family: 'Segoe UI', sans-serif;
+      font-weight: 600;
+    }
+    
+  </style>
+  
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <div class="login-card">
+            <div class="login-header">
+                <i class="fas fa-user-circle logo-icon"></i>
+                <h1>Welcome</h1>
+                <p class="heading1">Sign in to access your dashboard</p>
+            </div>
+            <form id="loginForm">
+                <div class="input-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" placeholder="Enter your email" 
+                           autocomplete="off" readonly onfocus="this.removeAttribute('readonly')" required>
+                    <div id="emailError" class="error-message">Please enter a valid email address</div>
+                </div>
+                
+                <div class="input-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" placeholder="Enter your password"
+                           autocomplete="new-password" readonly onfocus="this.removeAttribute('readonly')" required>
+                    <div id="passwordError" class="error-message">Please enter your password</div>
+                </div>
+                
+                <button type="submit" class="login-btn">Sign In</button>
+                <div class="links" style="margin-top: 10px;">
+                    <a href="signup.html" style="display: block; margin-bottom: 15px;">Sign Up</a>
+                    <a href="forgot-password.html" style="display: block; margin-bottom: 15px;">Forgot password?</a>
+
+                </div>              
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const loginForm = document.getElementById('loginForm');
+            
+            function validateEmail(email) {
+                const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                return re.test(email);
+            }
+            
+            loginForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                document.querySelectorAll('.error-message').forEach(el => {
+                    el.style.display = 'none';
+                });
+                
+                let isValid = true;
+                const email = document.getElementById('email').value;
+                const password = document.getElementById('password').value;
+                
+                if (!email || !validateEmail(email)) {
+                    document.getElementById('emailError').style.display = 'block';
+                    isValid = false;
+                }
+                
+                if (!password) {
+                    document.getElementById('passwordError').style.display = 'block';
+                    isValid = false;
+                }
+                
+                if (!isValid) return;
+                
+                // Check for admin login
+                if (email === 'admin@adminsync.com') {
+                    if (password === 'worksyncadmin12025') {
+                        localStorage.setItem('currentUser', JSON.stringify({
+                            firstName: 'Admin',
+                            lastName: 'User',
+                            email: email,
+                            department: 'Administration',
+                            isAdmin: true
+                        }));
+                        window.location.href = 'admin.html';
+                        return;
+                    } else {
+                        document.getElementById('passwordError').textContent = 'Invalid admin password';
+                        document.getElementById('passwordError').style.display = 'block';
+                        return;
+                    }
+                }
+                
+                // Check regular users
+                const users = JSON.parse(localStorage.getItem('users')) || [];
+                const user = users.find(u => u.email === email && u.password === password);
+                
+                if (user) {
+                    localStorage.setItem('currentUser', JSON.stringify({
+                        firstName: user.firstName,
+                        lastName: user.lastName,
+                        email: user.email,
+                        department: user.department,
+                        isAdmin: false
+                    }));
+                    window.location.href = 'dashboard.html';
+                } else {
+                    document.getElementById('passwordError').textContent = 'Invalid email or password';
+                    document.getElementById('passwordError').style.display = 'block';
+                }
+            });
+            
+            document.getElementById('email').addEventListener('input', function() {
+                document.getElementById('emailError').style.display = 'none';
+            });
+            
+            document.getElementById('password').addEventListener('input', function() {
+                document.getElementById('passwordError').style.display = 'none';
+            });
+    
+            // Clear form fields on page load
+            window.addEventListener('load', function() {
+                document.getElementById('email').value = '';
+                document.getElementById('password').value = '';
+                document.querySelectorAll('.error-message').forEach(el => {
+                    el.style.display = 'none';
+                });
+            });
+        });
+    </script>
+</body>
+</html> 

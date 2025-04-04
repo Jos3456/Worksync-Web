@@ -1,0 +1,61 @@
+/* Base Styles */
+body {
+    font-family: 'Segoe UI', system-ui, sans-serif;
+  }
+  
+  /* Landing Page Styles */
+  .hero-section {
+    background: linear-gradient(135deg, #4e73df 0%, #2e59d9 100%);
+    color: white;
+    padding: 5rem 0;
+  }
+  
+  .feature-icon {
+    font-size: 2.5rem;
+    color: #4e73df;
+    margin-bottom: 1rem;
+  }
+  
+  /* Access Page Styles */
+  .access-page {
+    background-color: #f8f9fa;
+  }
+  
+  /* Dashboard Styles */
+  .dashboard {
+    display: flex;
+  }
+  
+  .sidebar {
+    width: 250px;
+    height: 100vh;
+    position: fixed;
+  }
+  
+  .main-content {
+    margin-left: 250px;
+    width: calc(100% - 250px);
+  }
+  
+  .nav-link {
+    color: #adb5bd;
+    padding: 0.75rem 1rem;
+  }
+  
+  .nav-link:hover, .nav-link.active {
+    color: white;
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+  
+  /* Responsive Adjustments */
+  @media (max-width: 768px) {
+    .sidebar {
+      width: 100%;
+      position: relative;
+      height: auto;
+    }
+    .main-content {
+      margin-left: 0;
+      width: 100%;
+    }
+  }

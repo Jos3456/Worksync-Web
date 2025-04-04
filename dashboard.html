@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- PWA Meta Tags -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#4CAF50">
+<link rel="icon" href="assets/favicon.ico" sizes="any">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+    <title>Dashboard - WorkSync</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="manifest" href="/manifest.json">
+    <style>
+        :root {
+            --primary: #4CAF50;
+            --primary-dark: #3d8b40;
+            --bg-dark: #152338;
+            --text-light: #f8f9fa;
+            --card-bg: #ffffff;
+            --sidebar-width: 300px;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #EFDCAB;
+            
+        }
+        
+        .dashboard-container {
+            display: grid;
+            grid-template-columns: var(--sidebar-width) 1fr;
+            min-height: 100vh;
+        }
+        
+        /* Sidebar with Profile */
+        .sidebar {
+            background-color:#808D7C;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom-right-radius: 10px;
+    border-top-right-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.2),
+        0 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    text-align: center;
+    color: rgb(255, 255, 255);
+        }
+        
+        .profile-section {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .profile-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background-color: var(--primary);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            margin: 0 auto 15px;
+        }
+        
+        .profile-name {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .profile-email, .profile-dept {
+            font-size: 14px;
+            color: rgba(255,255,255,0.7);
+            margin-bottom: 5px;
+        }
+        
+        .logout-btn {
+            background-color: #C9DABF;
+            color: rgb(0, 0, 0);
+            border: 1px solid #808D7C;
+            padding: 8px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            margin-top: 15px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .logout-btn:hover {
+            background-color: white;
+            border: 1px solid #808D7C;
+        }
+        
+        /* Main Content - Attendance Section */
+        .attendance-content {
+            padding: 30px;
+            background-color: #C9DABF;
+        }
+        
+        .attendance-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            background-color: #d5e4cc;
+        }
+        
+        .section-title {
+            font-size: 22px;
+            font-weight: 600;
+            color: #000000;
+        }
+        
+        .attendance-actions {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .check-btn {
+            padding: 10px 20px;
+            border-radius: 4px;
+            border: none;
+            font-weight: 500;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .check-in {
+            background-color: #808D7C;
+    color: var(--primary-color);
+    border: 2px solid #808D7C;
+        }
+        
+        .check-out {
+            background-color: #808D7C;
+    color: var(--primary-color);
+    border: 2px solid #808D7C;
+        }
+        
+        .check-btn:hover {
+            background-color: transparent;
+    color: black; 
+        }
+        
+        .check-btn:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+        
+        /* Filters */
+        .filters {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .filter-group {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+        
+        .filter-label {
+            font-size: 13px;
+            color: #666;
+        }
+        
+        .filter-select, .filter-input {
+            padding: 8px 12px;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+            min-width: 150px;
+        }
+        
+        /* Attendance Table */
+        .attendance-table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: white;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .attendance-table th {
+            background-color: #f8f9fa;
+            padding: 12px 15px;
+            text-align: left;
+            font-weight: 600;
+            color: #444;
+            font-size: 14px;
+        }
+        
+        .attendance-table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #eee;
+            font-size: 14px;
+        }
+        
+        .attendance-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .status-present {
+            color: var(--primary);
+            font-weight: 500;
+        }
+        
+        .status-absent {
+            color: #f44336;
+            font-weight: 500;
+        }
+        
+        .status-late {
+            color: #FF9800;
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar with Profile -->
+        <div class="sidebar">
+            <div class="profile-section">
+                <div class="profile-avatar" id="userAvatar"></div>
+                <div class="profile-name" id="userName"></div>
+                <div class="profile-email" id="userEmail"></div>
+                <div class="profile-dept" id="userDept"></div>
+                <button class="logout-btn" id="logoutBtn">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </button>
+            </div>
+            
+            <!-- Navigation Menu -->
+            <div style="padding: 0 10px;">
+                <div style="font-size: 13px; color: rgba(255,255,255,0.5); margin-bottom: 15px; text-transform: uppercase;">
+                    
+                </div>
+                <div style="display: flex; flex-direction: column; gap: 5px;">
+                    <a href="#" style="display: flex; align-items: center; gap: 10px; padding: 10px; color: white; text-decoration: none; border-radius: 4px; background-color: rgba(255,255,255,0.1);">
+                        <i class="fas fa-calendar-check"></i>
+                        <span>Attendance</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Attendance Content -->
+        <div class="attendance-content">
+            <div class="attendance-header">
+                <h1 class="section-title">Attendance Logs</h1>
+                <div class="current-date" style="margin-left: auto; font-weight: bold; color: #000000; margin-left: 10px;">
+                  <!-- Date will be inserted here by JavaScript -->
+              </div>
+                <div class="attendance-actions">
+                    <button class="check-btn check-in" id="checkInBtn">
+                        <i class="fas fa-check-circle"></i> Check In
+                    </button>
+                    <button class="check-btn check-out" id="checkOutBtn" disabled>
+                        <i class="fas fa-sign-out-alt"></i> Check Out
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Filters -->
+            <div class="filters">
+                <div class="filter-group">
+                    <label class="filter-label">Date Range</label>
+                    <select class="filter-select" id="dateRange">
+                        <option>Today</option>
+                        <option>This Week</option>
+                        <option>This Month</option>
+                        <option>Custom Range</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label class="filter-label">Status</label>
+                    <select class="filter-select" id="statusFilter">
+                        <option>All</option>
+                        <option>Present</option>
+                        <option>Late</option>
+                        <option>Absent</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label class="filter-label">From</label>
+                    <input type="date" class="filter-input" id="dateFrom">
+                </div>
+                <div class="filter-group">
+                    <label class="filter-label">To</label>
+                    <input type="date" class="filter-input" id="dateTo">
+                </div>
+            </div>
+            
+            <!-- Attendance Table -->
+            <table class="attendance-table">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Check In</th>
+                        <th>Check Out</th>
+                        <th>Total Hours</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody id="attendanceLogs">
+                    <!-- Logs will be populated by JavaScript -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+          // Load current user from localStorage
+          const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+          
+          // Display current date
+const options = { day: 'numeric', month: 'long', year: 'numeric' };
+const currentDateElement = document.querySelector('.current-date');
+currentDateElement.textContent = new Date().toLocaleDateString(undefined, options);
+          // Redirect to login if no user is found
+          if (!currentUser) {
+              window.location.href = 'access.html';
+              return;
+          }
+          // Add to dashboard.html
+function backupData() {
+  const data = {
+    users: JSON.parse(localStorage.getItem('users')),
+    logs: JSON.parse(localStorage.getItem('attendanceLogs'))
+  };
+  const blob = new Blob([JSON.stringify(data)], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `worksync-backup-${new Date().toISOString()}.json`;
+  a.click();
+}
+
+function restoreBackup(file) {
+  const reader = new FileReader();
+  reader.onload = (e) => {
+    const data = JSON.parse(e.target.result);
+    localStorage.setItem('users', JSON.stringify(data.users));
+    localStorage.setItem('attendanceLogs', JSON.stringify(data.logs));
+    alert("Data restored successfully!");
+  };
+  reader.readAsText(file);
+}
+          
+          // Set user profile info
+          document.getElementById('userAvatar').textContent = 
+              currentUser.firstName.charAt(0) + currentUser.lastName.charAt(0);
+          document.getElementById('userName').textContent = 
+              `${currentUser.firstName} ${currentUser.lastName}`;
+          document.getElementById('userEmail').textContent = 
+              currentUser.email;
+          document.getElementById('userDept').textContent = 
+              currentUser.department || 'No department assigned';
+          
+          // Logout functionality
+          document.getElementById('logoutBtn').addEventListener('click', function() {
+              localStorage.removeItem('currentUser');
+              window.location.href = 'access.html';
+          });
+          if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("/sw.js")
+      .then(reg => console.log("SW registered:", reg))
+      .catch(err => console.log("SW failed:", err));
+  });
+}
+          
+          // Attendance functionality
+          const checkInBtn = document.getElementById('checkInBtn');
+          const checkOutBtn = document.getElementById('checkOutBtn');
+          let isCheckedIn = false;
+          
+          // Check if already checked in today
+          const todayDate = new Date().toISOString().split('T')[0]; // Changed variable name from 'today'
+          const attendanceLogs = JSON.parse(localStorage.getItem('attendanceLogs')) || [];
+          const todayLog = attendanceLogs.find(log => log.date === todayDate && log.userEmail === currentUser.email);
+          
+          if (todayLog && todayLog.checkIn && !todayLog.checkOut) {
+              isCheckedIn = true;
+              checkInBtn.disabled = true;
+              checkOutBtn.disabled = false;
+          }
+          
+          // Check In button
+          checkInBtn.addEventListener('click', function() {
+              const now = new Date();
+              const timeString = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+              const dateString = now.toISOString().split('T')[0];
+              
+              // Create or update log
+              let logIndex = attendanceLogs.findIndex(log => 
+                  log.date === dateString && log.userEmail === currentUser.email
+              );
+              
+              if (logIndex === -1) {
+                  attendanceLogs.push({
+                      userEmail: currentUser.email,
+                      date: dateString,
+                      checkIn: timeString,
+                      checkOut: null,
+                      status: now.getHours() > 9 ? 'Late' : 'Present'
+                  });
+              } else {
+                  attendanceLogs[logIndex].checkIn = timeString;
+                  attendanceLogs[logIndex].status = now.getHours() > 9 ? 'Late' : 'Present';
+              }
+              
+              localStorage.setItem('attendanceLogs', JSON.stringify(attendanceLogs));
+              isCheckedIn = true;
+              checkInBtn.disabled = true;
+              checkOutBtn.disabled = false;
+              loadAttendanceLogs();
+          });
+          
+          
+          // Check Out button
+          checkOutBtn.addEventListener('click', function() {
+              const now = new Date();
+              const timeString = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+              const dateString = now.toISOString().split('T')[0];
+              
+              // Find today's log
+              const logIndex = attendanceLogs.findIndex(log => 
+                  log.date === dateString && log.userEmail === currentUser.email
+              );
+              
+              if (logIndex !== -1) {
+                  attendanceLogs[logIndex].checkOut = timeString;
+                  
+                  // Calculate hours worked (simplified)
+                  const checkInTime = new Date(`${dateString} ${attendanceLogs[logIndex].checkIn}`);
+                  const hoursWorked = ((now - checkInTime) / (1000 * 60 * 60)).toFixed(1);
+                  attendanceLogs[logIndex].hoursWorked = hoursWorked;
+                  
+                  localStorage.setItem('attendanceLogs', JSON.stringify(attendanceLogs));
+              }
+              
+              isCheckedIn = false;
+              checkInBtn.disabled = false;
+              checkOutBtn.disabled = true;
+              loadAttendanceLogs();
+          });
+          
+          // Filter functionality
+          document.getElementById('dateRange').addEventListener('change', function() {
+              loadAttendanceLogs();
+          });
+          
+          document.getElementById('statusFilter').addEventListener('change', function() {
+              loadAttendanceLogs();
+          });
+          
+          document.getElementById('dateFrom').addEventListener('change', function() {
+              loadAttendanceLogs();
+          });
+          
+          document.getElementById('dateTo').addEventListener('change', function() {
+              loadAttendanceLogs();
+          });
+          
+          // Load attendance logs
+          function loadAttendanceLogs() {
+              const dateRange = document.getElementById('dateRange').value;
+              const statusFilter = document.getElementById('statusFilter').value;
+              const dateFrom = document.getElementById('dateFrom').value;
+              const dateTo = document.getElementById('dateTo').value;
+              
+              let filteredLogs = attendanceLogs.filter(log => 
+                  log.userEmail === currentUser.email
+              );
+              
+              // Apply date range filter
+              if (dateRange === 'Today') {
+                  const todayFilter = new Date().toISOString().split('T')[0]; // Changed variable name
+                  filteredLogs = filteredLogs.filter(log => log.date === todayFilter);
+              } else if (dateRange === 'This Week') {
+                  const oneWeekAgo = new Date();
+                  oneWeekAgo.setDate(oneWeekAgo.getDate() - 7);
+                  filteredLogs = filteredLogs.filter(log => 
+                      new Date(log.date) >= oneWeekAgo
+                  );
+              } else if (dateRange === 'This Month') {
+                  const firstDayOfMonth = new Date();
+                  firstDayOfMonth.setDate(1);
+                  filteredLogs = filteredLogs.filter(log => 
+                      new Date(log.date) >= firstDayOfMonth
+                  );
+              } else if (dateRange === 'Custom Range' && dateFrom && dateTo) {
+                  filteredLogs = filteredLogs.filter(log => 
+                      log.date >= dateFrom && log.date <= dateTo
+                  );
+              }
+              
+              // Apply status filter
+              if (statusFilter !== 'All') {
+                  filteredLogs = filteredLogs.filter(log => 
+                      log.status === statusFilter
+                  );
+              }
+              
+              // Sort by date (newest first)
+              filteredLogs.sort((a, b) => new Date(b.date) - new Date(a.date));
+              
+              // Display logs
+              const logsTable = document.getElementById('attendanceLogs');
+              logsTable.innerHTML = filteredLogs.map(log => `
+                  <tr>
+                      <td>${formatDate(log.date)}</td>
+                      <td>${log.checkIn || '-'}</td>
+                      <td>${log.checkOut || '-'}</td>
+                      <td>${log.hoursWorked ? log.hoursWorked + ' hrs' : '-'}</td>
+                      <td class="status-${log.status.toLowerCase()}">${log.status}</td>
+                  </tr>
+              `).join('');
+              
+              if (filteredLogs.length === 0) {
+                  logsTable.innerHTML = `
+                      <tr>
+                          <td colspan="5" style="text-align: center; padding: 30px; color: #666;">
+                              No attendance records found
+                          </td>
+                      </tr>
+                  `;
+              }
+          }
+          
+          function formatDate(dateString) {
+              const options = { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' };
+              return new Date(dateString).toLocaleDateString(undefined, options);
+          }
+          
+          // Initialize
+          loadAttendanceLogs();
+          
+          // Set default dates for filters
+          const defaultToday = new Date().toISOString().split('T')[0]; // Changed variable name
+          document.getElementById('dateFrom').value = defaultToday;
+          document.getElementById('dateTo').value = defaultToday;
+      });
+  </script>
+</body>
+</html>

@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WorkSync Help Center</title>
+    <link rel="icon" href="assets/favicon.ico" sizes="any">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="help-styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <i><a href="/landing.html"><img src="/assets/icons/favicon.ico" class="small-img"></a></i>
+                <span>WorkSync</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#contact" class="btn primary-btn">Contact</a></li>
+                <li><a href="access.html" class="btn login-btn">Login</a></li>
+            </ul>
+            <div class="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Help Center Header -->
+    <header class="help-header">
+        <div class="container">
+            <h1>Help Center</h1>
+            <p>Find answers to common questions about using WorkSync</p>
+        </div>
+    </header>
+
+    <!-- Main Help Content -->
+    <main class="help-container">
+        <div class="container">
+            <!-- Quick Access Cards -->
+            <div class="quick-help-cards">
+                <a href="#getting-started" class="help-card">
+                    <i class="fas fa-rocket"></i>
+                    <h3>Getting Started</h3>
+                    <p>New to WorkSync? Learn how to set up your account.</p>
+                </a>
+                <a href="#troubleshooting" class="help-card">
+                    <i class="fas fa-tools"></i>
+                    <h3>Troubleshooting</h3>
+                    <p>Fix common issues with attendance tracking or login.</p>
+                </a>
+                <a href="#account-security" class="help-card">
+                    <i class="fas fa-shield-alt"></i>
+                    <h3>Account Security</h3>
+                    <p>Keep your account safe and recover lost passwords.</p>
+                </a>
+            </div>
+
+            <!-- FAQ Sections -->
+            <section id="getting-started" class="help-section">
+                <h2><i class="fas fa-rocket"></i> Getting Started</h2>
+                <div class="faq-item">
+                    <h3 class="faq-question">How do I sign up for WorkSync?</h3>
+                    <div class="faq-answer">
+                        <p>To create a WorkSync account:</p>
+                        <ol>
+                            <li>Go to the <a href="signup.html">Sign Up page</a>.</li>
+                            <ul><li>Enter your full name, work email, and create a password.</li></ul>
+                            <li>Click <strong>Create Account</strong>.</li>
+                            <li>Access dashboard</li>
+                        </ol>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <h3 class="faq-question">How do I clock in/out?</h3>
+                    <div class="faq-answer">
+                        <p>On the <a href="dashboard.html">Dashboard</a>:</p>
+                        <ol>
+                            <li>Click <strong>Clock In</strong> when you start work.</li>
+                            <li>Click <strong>Clock Out</strong> when you finish.</li>
+                            <li>Your total hours are calculated automatically.</li>
+                        </ol>
+                    </div>
+                </div>
+            </section>
+
+            <section id="troubleshooting" class="help-section">
+                <h2><i class="fas fa-tools"></i> Troubleshooting</h2>
+                <div class="faq-item">
+                    <h3 class="faq-question">I can't log in, what should i do?</h3>
+                    <div class="faq-answer">
+                        <p>If the system didn’t register your clock in/out:</p>
+                        <ul>
+                            <li>Ensure you're using the correct email and password.</li>
+                            <li>Reset your password via <a href="forgot-password.html">Forgot Password</a> if needed.</li>
+                            <li>Clear your browser cache or try a different browser.</li>
+                            <li>Contact IT support if the issue persists.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <h3 class="faq-question">My attendance wasn't recorded. How do I fix this?</h3>
+                    <div class="faq-answer">
+                        <p>If the system didn’t register your clock in/out:</p>
+                        <ol>
+                            <li>Check your <a href="dashboard.html">Attendance Log</a> for discrepancies.</li>
+                            <li>Notify your manager to manually correct the record.</li>
+                            <li>Provide details (date, approximate time) for verification.</li>
+                        </ol>
+                    </div>
+                </div>
+            </section>
+
+            <section id="account-security" class="help-section">
+                <h2><i class="fas fa-shield-alt"></i> Account Security</h2>
+                <div class="faq-item">
+                    <h3 class="faq-question">I forgot my password. How do I reset it?</h3>
+                    <div class="faq-answer">
+                        <p>To reset your password:</p>
+                        <ol>
+                            <li>Go to <a href="forgot-password.html">Forgot Password</a>.</li>
+                            <li>Enter your registered email address.</li>
+                            <li>Click the reset link sent to your email.</li>
+                            <li>Create a new password (minimum 8 characters).</li>
+                        </ol>
+                        <p><em>Tip: Use a password manager to store credentials securely.</em></p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <h3 class="faq-question">How do I update my profile information?</h3>
+                    <div class="faq-answer">
+                        <p>To edit your profile:</p>
+                        <ol>
+                            <li>Log in and go to your <strong>Dashboard</strong>.</li>
+                            <li>Click <strong>Edit Profile</strong> in the side panel.</li>
+                            <li>Update your phone number, profile picture, etc.</li>
+                            <li>Click <strong>Save Changes</strong>.</li>
+                        </ol>
+                        <p><em>Note: Some fields (like name/email) may require admin approval.</em></p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Contact Support -->
+            <section id="contact" class="help-section support-section">
+                <h2><i class="fas fa-headset"></i> Still Need Help?</h2>
+                <div class="support-options">
+                    <div class="support-card">
+                        <i class="fas fa-envelope"></i>
+                        <h3>Email Support</h3>
+                        <p>Send us a detailed message at <strong>joskariuki2024@gmail.com</strong> (response within 24 hours).</p>
+                        <a href="mailto:joskariuki2024@gmail.com" class="login-btn">Contact Us</a>
+                    </div>
+                    <div class="support-card">
+                        <i class="fas fa-phone-alt"></i>
+                        <h3>Call IT Helpdesk</h3>
+                        <p>For urgent issues, call <strong>+254 799199987</strong> (Mon-Fri, 9AM-5PM EAT).</p>
+                        <a href="tel:+254799199987" class="login-btn">Call Now</a>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer (Consistent with other pages) -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <div class="logo">
+                        <i><a href="/landing.html"><img src="/assets/icons/favicon.ico" class="small-img"></a></i>
+                    </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 WorkSync. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // FAQ toggle functionality
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const answer = question.nextElementSibling;
+                answer.style.display = answer.style.display === 'block' ? 'none' : 'block';
+                question.classList.toggle('active');
+            });
+        });
+
+        // Mobile menu toggle (consistent with other pages)
+        document.querySelector('.mobile-menu').addEventListener('click', () => {
+            document.querySelector('.nav-links').classList.toggle('active');
+        });
+    </script>
+</body>
+</html>
